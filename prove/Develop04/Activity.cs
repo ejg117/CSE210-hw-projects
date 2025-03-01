@@ -30,7 +30,7 @@ abstract class Activity
         Console.Write("How many seconds for this session? ");
         _duration = int.Parse(Console.ReadLine());
         Console.Write("Prepare to begin...");
-        ShowSpinner(2);
+        ShowLoadingBar(2); 
         Console.WriteLine();
     }
 
@@ -38,25 +38,27 @@ abstract class Activity
     {
         Console.WriteLine();
         Console.WriteLine("Good job!");
-        ShowSpinner(2);
+        ShowLoadingBar(2); 
         Console.WriteLine($"You completed {_duration} seconds of the {_activityName}.");
-        ShowSpinner(2);
     }
 
-    protected void ShowSpinner(int seconds)
+    protected void ShowLoadingBar(int seconds)
     {
-        for (int i = 0; i < seconds; i++)
+        int barWidth = 20;
+        int totalIterations = seconds * 10; 
+
+        for (int i = 0; i <= totalIterations; i++)
         {
-            Console.Write("|");
-            Thread.Sleep(500);
-            Console.Write("\b/");
-            Thread.Sleep(500);
-            Console.Write("\b-");
-            Thread.Sleep(500);
-            Console.Write("\b\\");
-            Thread.Sleep(500);
-            Console.Write("\b");
+            double progress = (double)i / totalIterations;
+            int filledWidth = (int)(progress * barWidth);
+            
+            Console.Write("\r"); 
+            Console.Write(new string('█', filledWidth)); 
+            Console.Write(new string(' ', barWidth - filledWidth)); 
+            
+            Thread.Sleep(100); 
         }
+        Console.Write("\r" + new string(' ', barWidth) + "\r"); 
     }
 
     protected int GetDuration()

@@ -1,9 +1,10 @@
 using System;
+using System.Threading;
 
 class BreathingActivity : Activity
 {
     public BreathingActivity() : base("Breathing Activity",
-        "This activity will help you relax by guiding you through slow breathing.")
+        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
     {
     }
 
@@ -13,14 +14,24 @@ class BreathingActivity : Activity
         while (timeLeft > 0)
         {
             Console.WriteLine("Breathe in...");
-            ShowSpinner(2); // 4 seconds total per cycle
-            timeLeft -= 4;
+            ShowCountdown(5); 
+            timeLeft -= 5;
 
             if (timeLeft <= 0) break;
 
             Console.WriteLine("Breathe out...");
-            ShowSpinner(2);
-            timeLeft -= 4;
+            ShowCountdown(5); 
+            timeLeft -= 5;
         }
+    }
+
+    private void ShowCountdown(int seconds)
+    {
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.Write($"\r{i} seconds remaining    ");
+            Thread.Sleep(1000); 
+        }
+        Console.Write("\r" + new string(' ', 20) + "\r"); 
     }
 }

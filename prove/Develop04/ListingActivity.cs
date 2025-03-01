@@ -5,12 +5,15 @@ class ListingActivity : Activity
 {
     private List<string> _prompts = new List<string>
     {
-        "Who are people you appreciate?",
-        "What are your strengths?"
+        "Who are people that you appreciate?",
+        "What are personal strengths of yours?",
+        "Who are people that you have helped this week?",
+        "When have you felt the Holy Ghost this month?",
+        "Who are some of your personal heroes?"
     };
 
     public ListingActivity() : base("Listing Activity",
-        "This activity will help you list positive things in your life.")
+        "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
     }
 
@@ -18,13 +21,12 @@ class ListingActivity : Activity
     {
         Random rand = new Random();
         Console.WriteLine(_prompts[rand.Next(_prompts.Count)]);
-        Console.Write("Start thinking...");
-        ShowSpinner(2);
-        Console.WriteLine();
+        Console.Write("Press Enter when ready to list...");
+        Console.ReadLine(); 
 
         Console.WriteLine("List items (press Enter after each, 'done' to finish):");
         List<string> items = new List<string>();
-        DateTime endTime = DateTime.Now.AddSeconds(GetDuration() - 2); // Adjust for initial pause
+        DateTime endTime = DateTime.Now.AddSeconds(GetDuration());
 
         while (DateTime.Now < endTime)
         {
