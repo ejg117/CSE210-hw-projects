@@ -38,7 +38,7 @@ public class ChecklistGoal : Goal
     {
         if (IsComplete && _currentCount == _targetCount)
         {
-            return Points + _bonusPoints; // Award bonus on completion
+            return Points + _bonusPoints; 
         }
         return IsComplete ? 0 : Points;
     }

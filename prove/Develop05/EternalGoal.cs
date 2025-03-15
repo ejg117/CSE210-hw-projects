@@ -7,7 +7,7 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Eternal goals are never complete
+        
     }
 
     public override string GetDetailsString()
@@ -22,6 +22,6 @@ public class EternalGoal : Goal
 
     public override int GetPointsAwarded()
     {
-        return Points; // Always award points
+        return Points;
     }
 }
